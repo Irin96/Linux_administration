@@ -1,0 +1,1054 @@
+#  What is Linux?
+* It is an operating system which sits in the middle of hardware and users.
+
+# Unix Vs Linux
+*  Unix was first developed for multi-user and multi tasking in mid 1970  in Bell Labs.
+*  Linux was born in 1991 by Linux Torvalds.
+*  Linux is mostly free.
+*  Linux is open source.
+*  Unix is mostly used by Sun as Solaris, HP-UX, AIX etc.
+*  Linux is used by many developers and community or companies.
+*  Unix comparatively supports fewer file system.
+*  Linux can be installed on a wide variety of computer hardware.
+
+
+#  What is Virtual Box?
+*   It is a free and open-source hypervisior for X86 computers.
+*   It installs on existing Intel or AMD based computers.
+
+# System Access and File system
+##  Command Prompts
+    * A command prompt , also referred to simply as a prompt, is a short text at the start of the command line followed by prompt  symbol.
+    * To get prompt back - Ctrl + C.
+
+##  Access to Linus System
+    * Each operating system has a different protocol or client that is used to access the system.
+
+#  New Network Command
+    * CentOS/RHEL 5 or 6 = ifconfig
+    * CentOS/RHEL 7 = if
+    * CentOS/RHEL 7.5 or above = ifconfig
+    * To ifconfig in 7.5 = yum install net-tools
+    * If ifcongig doesn't work = ip a, ip addr
+#  Linux File System
+    * OS store data on disk drives using a structure called a filesystem
+    * Linux filesystems store information in a hierarchy of directories anf files.
+
+#  File system and its description
+   * /boot - contains file that is used by the boot loader
+   * /root - root user home directory
+   * /dev  - system directory
+   * /etc  - Configuration files
+   * /bin-> /user/bin - Everyday user commands
+   * /sbin-> /user/sbin - System/filesystem commands
+   * /opt  - Opptional add on applications
+   * /proc - running processes
+   * /lib ->usr/lib - C programming library files needed by apps and commands.
+   * /tmp - Files that is used for temporary files.
+   * /home - Directory for user
+   * /var - system logs
+   * /run - System daemons that start very early to store temporary runtime files like PHD files.
+   * /mnt - to mount external file system.
+   * /media - For cdrom mounts.
+
+# File System Navigation commands
+   * cd - Stands for change directory - To change directory.
+   * pwd - Stands for Print working directory - Tells about which working directory you are in.
+   * ls  - Stands for list - Listing the files or folder.
+
+
+# File System Path
+   ## Two types of path: Absolute path and Relative path
+      *Absolute: An absolute path always begin with a "/". This indicates that the path starts at root directory.
+      *Relative: An relative path alwyas begin with a "/". It identifies location relative to your current position.
+
+# Creating Files And Directories
+  ## Creating Files
+     * touch
+     * cp 
+     * Vi 
+  ## Creating Directories
+     *mkdir
+
+# Linux File types
+   * - = Regular File
+   * d = Directory
+   * l = Link
+   * c = Special file or device file
+   * s = Socket
+   * p = Named pipe
+   * b = Block Device
+
+# Find Files and Directories
+   * To main commands are used to find files/directories:
+   * find
+   * locate
+
+# Wildcards
+
+  * A character that can be used as a substitute for any class of characters in search.
+  * * - represents zero or more character
+  * ? - represents a single character
+  * [] - represents a range of character
+
+# Soft and Hard Links
+
+   * inode - Pointer or number of a file on the hard disk.
+   * Soft Links - Link will be removed if removed or renamed.
+   * Hard Link - Deleting renaming or moving the original file will not affect the hard link.
+   * ln - For Hard Link
+   * ln -s - For Soft Link 
+   * For creating softlink first you should create file in home directory and then create link in tmp file.
+
+# Linux Fundamentals
+
+   ## Commands Syntax
+      * Command options and arguments - Commands typically have the syntax : command option(s) argument(s)
+      * Options :
+          - Modify the way that a command works
+          - Usually consist of a hyphen or dash followed by a single letter
+          - Some commands accept multiple options which can usually be grouped together after a single hyphen.
+
+      * Arguments :
+          - Most commands are used together with one or more arguments.
+          - Some commands assume a default argument if none is supplied.
+          - Arguments are optional for some commands and required by others.
+
+# Files and Directory Permissions
+  
+  ## File Permissions
+      * UNIX is a multi-user system. Every file and directory in your account can be protected from or 
+        made accessible to other users by changing its access permissions. Every user has responsibility for 
+        controlling access to their files.
+      * Permissions for a file or directory may be restricted to by types.
+      * There are 3 types of permissions 
+         - r - read.
+         - w - write.
+         - x - execute = running a program.
+
+      * Each permissions (rwx) can be controlled at the three levels.
+         - u - user = yourself.
+         - g - group = can be people in the same project.
+         - o - other = everyone on the system.
+      
+      * File or Directory permission can be displayed by running ls -l command.
+      * Command to change permission
+         - chmod
+
+   ## Permission using Numeric Mode
+      * Permission to a file and directory can also be assigned numerically.
+        - chmod ugo+r FILE
+         OR 
+        - chmod 444 FILE
+
+      * Following assigns numbers to permission types.
+         0 - No permission = ---
+         1 - Execute       = --X 
+         2 - Write         = -w-
+         3 - Execute + Write = -wx
+         4 - Read          = r--
+         5 - Read + Execute = r-x 
+         6 - Read + Write = rw-
+         7 - Read + Write + Execute = rwx
+
+# File Ownership Commands
+  * There are 2 owners of a file or directory 
+    - user and group
+  * Command to change file Ownership
+    - chown = chown changes the ownership of a file.
+    - chgrp = chgrp changes the group ownership of a file.
+  * Recursive ownership change option(Cascade)
+    - R 
+
+# Access Control List (ACL)
+  
+   * Access Control List provides an additional, more flexible permission mechanism for file systems. It is 
+     designed to assist with UNIX file permissions. ACL allows you to give permissions for any user or group
+     to any disc resource.
+   
+   * Use of ACL: These are used to make a flexible permission mechanism in linux.
+   * Commands to assign and remove ACL permissions are:
+      - setfacl 
+      - getfacl
+
+   * List of commands for setting up ACL:
+    
+     - To add permission for user :- setfacl -m u:user:rwx /path/to/file
+     - To add permissions for a group :- setfacl -m g:group:rw /path/to/file
+     - To allow all files or directories to inherit ACL entries from the directories it is within :-
+       setfacl -dm "entry" /path/to/dir 
+     - To remove a specific entry :- setfacl -x u:user /path/to/file
+     - To remove all entries :- setfacl -b path/to/file
+
+
+# Help Commands
+  
+  * There are 3 types of help commands:
+    - whatis command
+    - command --help
+    - man command 
+
+# Tab Completion and Up Arrow
+ 
+  * Hitting TAB key completes the available commands, files or directories.
+    - chm TAB
+    - ls j<TAB>
+    - cd Des<TAB>
+
+   * Hitting up arrow key on the keyboard returns the last command run.
+
+
+# Adding Text to Files (Redirects)
+
+   * 3 simple ways to add text to files:
+     - vi = This will create and text to the files.
+     - Redirect command output > or >>
+     - echo > or >>
+
+
+# Standard Output to a File (tee)
+  * "tee" command is used to store and view (both at the same time) the output of any command.
+
+# Pipes
+  * A pipe is used by the shell to connect the output of one command directly to input of another command.
+  * The symbol for a pipe is the vertical bar (|). The command syntax is:
+     - command1 [arguments] | command2 [arguments]
+
+
+# File Maintenance Commands
+   
+   * cp = copy to one file to another file.
+   * rm = To remove a file.
+   * mv = To move the location of a file from one location to another location.
+   * mkdir = To make a directory.
+   * rmdir or rm -r = To remove a directory.
+   * chgrp = To change ownership of a file at the group level.
+   * chown = To change ownership of a file at the user level.
+
+# File Display Commands
+   
+   *cat  = Views the entire content of the file.
+   *more = Views content of a file one at a time.
+   *less = Views content of a page in reverse order but one line at at a time.
+   *head = Views first n lines of a file.
+   *tail = Views last n lines of a file.
+
+# Filters / Text Processors Command.
+
+  *cut = It takes the input and cut to the desired output.
+  *awk = It allows you to list according to columns
+  *grep and egrep = It allows to search by keywords.
+  *sort = Sorts out the output in alphabetical order.
+  *uniq = Will not show any duplicates.
+  *wc = Tells about how many words or letters in a file.
+
+   ## cut - Text Processors Commands
+
+      - Cut is a command line utility that allows you to cut parts of lines from specified files or piped data
+        and print the result to standard output. It can be used to cut parts of a line by delimiter, byte, position,
+        and character.
+      - cut filename = Does not work
+      - cut --version = Check version 
+      - cut -c1 filename = List one character
+      - cut -c1,2,4 = Pick and chose character
+      - cut -c1-3 filename = List of range characters
+      - cut -c1-3,6-8 filename = List specific range of characters
+      - cut -b1-3 filename = List by byte size
+      - cut -d: -f 6 /etc/passwd = List first 6th column separated by:
+      - cut -d: -f 6-7 /etc/passwd = List first 6th and 7th column separated by:
+      - ls -l | cut -c2-4 = Only print user permissions of file/dir.
+
+   ## awk - Text Processors Commands
+
+      * awk is a utility/language designed for data extraction . Most of the time it is used to extract fields
+        from a  file or from an output.
+      * awk --version = Version 
+      * awk '{print $}' file = List the first field from the file.
+      * ls -l | awk'{print $1,$3}' = List the 1st and 3rd field from the file.
+      * ls -l | awk '{print $NF}' = List field of the output.
+      * awk '/specificword/ {print}' file = Search for a specific word.
+      * awk -F: '{print $1}' /etc/passwd = Output only 1st field of /etc/passwd
+      * echo "Hello Tom" | awk '{$2="Adam"; print $0}' = Replace words field words
+      * cat file | awk '{$2="Adam";print $0}' = Replace words field words
+      * awk 'length($0) > 15' file = Get lines that have more than 15 byte size.
+      * ls -l | awk '{if($9 == "aa") print $0;}' = Get the field matching seinfeld in /home/test
+      * ls -l | awk '{print NF}' = Number of fields.
+
+   ## grep/egrep - Text Processors commands
+    
+      * grep - The grep command which stands for "global regular expression print" , processes text line by line
+        and prints any lines which match a specified pattern.
+      * grep --version or grep --help = Check version or help.
+      * grep keyword file = Search for a keyword from a file.
+      * grep -c keyword file = Search for a keyword and count.
+      * grep -i KEYword file = Search for a keyword ignore case-sensitive.
+      * grep -n keyword file = Display the matches lines and their line numbers.
+      * grep -v keyword file = Display everything but keyword
+      * grep keyword file | awk '{print $1}' = Search for a keyword and then only give the 1st field.
+      * ls -l | grep Desktop = Search for a keyword and then only give the 1st field
+      * egrep -i "keyword|keyword2" file = Search for 2 keywords.
+
+   ## sort/uniq - Text Processors Commands
+     
+     * sort command sorts in alphabetical order.
+     * Uniq command filters out the repeated or duplicate lines
+     * sort --version or sort --help = Check version or help.
+     * sort file = Sorts in alphabetical order.
+     * sort -r file = Sort in reverse alphabetical order.
+     * sort -k2 file = Sort by field number.
+     * uniq file = Removes duplicates
+     * sort file | uniq = Always sort first before using their uniq line numbers.
+     * sort file | uniq -c = Sort first the  uniq and list count
+     * sort file | uniq - d = Only show repeated lines.
+
+   ## wc - Text Processors Commands
+     
+     * The command reads either standard input or a list of files and generates: newline count, word count,
+       and byte count.
+
+     * wc --version or wc --help = help
+     * wc file = Check file line count, word count and byte count.
+     * wc -l file = Get the number of lines in a file.
+     * wc -w file = Get the number of words in a file.
+     * wc -c file = Get the number of bytes in a file.
+     * wc DIRECTORY = Not allowed.
+     * ls -l | wc -l = Number of files.
+
+   ## Compare Files
+
+    * diff (Line by Line)
+    * cmp (Byte by byte)
+    
+   ## Compress and un-Compress Files
+
+     * tar = put bunch of files in a container.
+     * gzip = compresses a file.
+     * gzip -d or gunzip = To uncompress a file.
+     
+
+   ## Truncate File Size (truncate)
+
+     * The linux truncate command is often used to shrink or extend 
+       the size of a file to the specified size.
+     * Command 
+       - truncate -s 10 filename
+
+    ## Combining and Splitting files.
+     
+     * Multiple files can be combined into one and 
+     * One file can be split into multiple files
+       - cat file1 file2 file3 > file4
+       - split file4
+       - eg: split -1 300 file.txt childfile
+     * Split file.txt into 300 lines per file and output to childfileaa,
+       childfileab, and childfileac.
+
+
+    ## Linux File Editor
+
+     * A text editor is a program which enables you to create and manipulate
+       data(text) in a Linux file.
+
+     * There are several standard text editors available on most Linux systems.
+       - vi = Visual Editor
+       - ed = standard line editor
+       - ex = Extended line editor
+       - emacs = A full screen editor
+       - pico = Begineer's editor
+       - vim = Advance version of vi
+
+      * Our editor = vi (available in almost every Linux distribution)
+      * vi supplies commands for:
+        - Inserting and deleting text
+        - Replacing text
+        - Moving around the file
+        - Finding and substituting strings
+        - Cutting and pasting text
+      * Most Common keys:
+        - i - Insert
+        - Esc - Escape out of any mode 
+        - r - replace 
+        - d - delete
+        - :q! - quit without saving
+        - :wq! - quit and save
+
+    ## Difference between vi and vim editor
+
+      * Due to added features, learning and using vim editor is much easier
+        than vi editor
+      * Since vim is based on the vi, when you will learn how to use the vim
+        editor, you will automatically learn how to use the vi editor.
+      * vim has all the features as vi with some excellent addition.
+      * There's also a comprehensive help system and lots of customization
+        options available.
+
+    ## vim interactive learning tools
+     
+      * There are many websites that offer free vim interactive training.
+        - https://www.openvim.com/
+        - http://www.vimgenius.com
+        - https://vim-adventures.com/
+
+    ## sed command
+
+      - Replace a string in a file with a newstring.
+      - Find and delete a line.
+      - Remove empty lines.
+      - Remove the first or n lines in a file
+      - To replace tabs with spaces
+      - Show defined lines from a file.
+      - Substitute within vi editor 
+
+    ## User Account Management
+      
+      * Commands:
+        - useradd
+        - groupadd
+        - userdel
+        - groupdel
+        - usermod
+      * Files
+        - /etc/passwd
+        - /etc/group
+        - /etc/shadow
+
+    ## Switch Users and sudo Access
+
+       * Commands:
+         - su - username
+         - sudo command
+         - visudo
+
+        * File:
+          - /etc/sudoers
+
+    ## Monitor Users
+      
+      - who 
+      - last
+      - w 
+      - finger
+      - id.
+
+    ## Talking to users
+
+       - users
+       - wall
+       - write
+    
+    ## Linux Account Authentication
+
+      * Types of Accounts
+       - Local Accounts
+       - Domain/Directory accounts
+
+    ## Difference between Active Directory,LDAP,IDM,WinBIND,OpenLDAP etc.
+
+      * Active Directory = Microsoft
+      * IDM - Identity Manager
+      * WinBIND(Samba) = Used in Linux to communicate with Windows.
+      * OpenLDAP(open source)
+      * IBM Directory Server.
+      * JumpCloud
+      * LDAP = Lightweight Directory Access Protocol
+
+    ## System Utility Commands
+
+       * date 
+       * uptime
+       * hostname
+       * uname
+       * which  
+       * cal 
+       * bc
+
+    ## Processes and Jobs
+
+      * Application = Service
+      * Script 
+      * Process = An application creates processes 
+      * Daemon  = That continously runs on the background.
+      * Threads = Every process has multiple threads.
+      * Job     = Run a service or process at a schedule time.
+      * systemctl or service 
+      * ps
+      * top
+      * kill
+      * crontab
+      * at
+    
+    ## Additional Cron Jobs
+
+     * By default there are 4 different types of cronjobs
+       - Hourly
+       - Daily
+       - Weekly
+       - Monthly
+     * All the above crons are setup in
+       - /etc/cron.__(directory)
+     * The timing for each are set in
+       - /etc/anacrontab -- except Hourly
+     * For hourly 
+       - /etc/cron.d/0hourly
+
+    ## Process Management
+
+     * Background = Ctrl-z, jobs and bg 
+     * Foreground = fg 
+     * Run process even after exit = nohup process &
+        OR = nohup process > /dev/null 2>&1 &
+     * Kill a process by name = pkill
+     * Process priority = nice (eg: nice -n 5 process)
+     * Process monitoring = top 
+     * List process = ps
+
+     ## System monitoring
+       
+       * top
+       * df 
+       * dmesg
+       * iostat 1
+       * netstat 
+       * free
+       * cat /proc/cpuinfo
+
+    ## System Log Monitor
+     
+      * Important way of system administration is log monitor 
+      * Log Directory = /var/log 
+        - boot 
+        - chronyd = NTP
+        - cron    
+        - maillog
+        - secure
+        - messages 
+        - httpd
+
+    ## System Maintenance Commands
+        
+        * shutdown
+        * init 0-6
+        * reboot
+        * halt
+
+    ## Changing System hostname 
+
+       * hostnamectl - set-hostname newhostname
+       * Version 7 = Edit /etc/hostname 
+       * Version 6 = Edit /etc/sysconfig/network
+
+    ## Finding System Information 
+     
+      - cat /etc/redhat-release
+      - uname -a 
+      - dmidecode 
+
+    ## Terminal Control keys
+      
+      * Several key combinations on your keyboard usually have a special effect on the terminal.
+      * These "control" (CTRL) keys are accomplished by holding the CTRL key while typing the second key. 
+      * The most common control keys are listed below:
+
+        - CTRL-u = erase everything you've typed on the command line.
+        - CTRL-c = stop/kill a command.
+        - CTRL-z = suspend a command.
+        - CTRL-d = exit from an interactive program (signals end of data).
+
+    ## Terminal Commands 
+
+      * clear - Clears your screen.
+      * exit  - Exit out of the shell, terminal or a user session.
+      * script - The script command stores terminal activities in a log file that can be
+                 named by a user, when a name is not provided by a user, the default filename, typescript is used.
+
+    
+    ## Recover Root Password
+
+     * Restart your computer
+     * Edit grub
+     * Change Password 
+     * reboot
+
+    ## SOS Report
+
+     * Collect and package diagnostic and support data.
+     * Package name - sos-version 
+     * Command - sosreport 
+
+    ## Environment Variables 
+
+     * An environment variable is a dynamic-named value that can affect the way
+       running process will behave on a computer. They are part of the environment in which a process runs.
+     * Set of defined rules and values to build an environment.
+     * To view all environment Variables
+       - printenv or env 
+     * To view ONE environment variable 
+       - echo $ SHELL 
+     * To set the environment variables 
+       - export TEST=1 
+       - echo $TEST 
+     * To set environment variable permanently 
+       - vi .bashrc 
+       - TEST='123' 
+       - export TEST 
+     * To set global environment variable permanently 
+       - vi /etc/profile or /etc/bashrc 
+       - Test='123' 
+       - export TEST 
+
+
+# Shell Scripting 
+  
+   ## Linux Kernel 
+    
+      * Interface between hardware and software.
+
+   ## Shell 
+
+      * Its like a container.
+      * Interface between users and Kernel/OS.
+      * CLI is a Shell.
+      * Find your shell :
+        - echo $0
+        - Available Shells "cat /etc/shells"
+        - your shell ? /etc/passwd 
+
+      * Windows GUI is a shell 
+      * Linux KDE GUI is a shell
+      * Linux sh, bash etc. is a shell 
+
+    ## Types of Linux Shells
+      * Gnome - Graphical environment.
+      * KDE - Desktop GUI environment.
+      * sh - bornshell
+      * bash -  bornagain shell
+      * csh and tcsh 
+      * ksh - Krnshell 
+
+    ## Shell Scripting  
+      
+      * A shell scripting is an executable file containing multiple shell commands that are executed
+        sequentially. The file can contain:
+        - Shell(#!/bin/bash)
+        - Comments(# comments)
+        - Statements(if, while, foretc.)
+
+      * Shell script should have executable permissions (eg. -rwx r-x r-x)
+      * Shell script has to be called from absolute path(eg./home/userdir/script.bash) 
+      * If called from current location then ./script.bash 
+
+    ## Basic Scripts 
+     
+     * Output to screen using "echo"
+     * Creating tasks 
+       - Telling your id , current location, your files/directories, system info 
+       - Creating files or directories 
+       - Output to a file ">" 
+
+      * Filters/Text processors through scripts(cut, awk, grep, sort, uniq, wc) 
+      
+    ## Input and Output Scripts 
+      
+       * Create script to take input from the user 
+         - read 
+         - echo 
+
+    ## If-then Scripts 
+       
+       * If then statement 
+         - If this happens = do this
+         - Otherwise = do that
+
+    ## For Loop Scripts 
+
+
+       * For loops 
+         - Keep running until specified number of variable 
+           eg: variable = 10 then run the script 10 times.
+            or 
+                variable = green, blue, red (then run the script 3 times for each color.)
+
+       * do-while Scripts
+         
+         - do while : The while statement continually executes a block of statements while a 
+                      particular condition is true or met
+
+                     eg; Run a script until 2 pm 
+
+                     while [ condition ] 
+                     do 
+                              command1
+                              command2 
+                              commandN 
+                      done
+
+      ## Case Statements Scripts 
+
+         - If option a is selected = do this eg. run "top" command 
+         - If option b is selected = do this eg. run "pwd" command 
+         - If option c is selected = do this eg. run "df -h" command
+
+      
+   ## Check Remote Servers Connectivity 
+
+     * A script to check the status of remote hosts
+     * ping ip address = it will check the ip address and tell whether it is accessible or not.
+
+   ## Aliases 
+
+     * Aliases is a very popular command that is used to cut down on lengthy and repetitive commands. 
+        - alias ls="ls -al"
+        - alias pl="pwd; ls"
+        - alias tell="whoami; hostname; pwd"
+        - alias dir="ls -l | grep ^d"
+        - alias lmar="ls -l | grep Mar"
+        - alias wpa="chmod a+w"
+        - alias d="df -h | awk '{print \$6}' | cut -c1-4" 
+        - To delete the aliases type unalias aliasname 
+
+
+    ## Creating User or Global Aliases
+
+       * User = Applies only to specific user profile
+       * Global = Applies to everyone who has account on the system 
+       * User = /home/user/.bashrc 
+       * For making alias global you have to go vi /etc/bashrc file by root and type Shift + G
+
+    ## Shell History 
+
+       * All commands are recorded
+       * Command "history"
+       * eg : history | grep awk
+         
+  
+  # Networking, Services, and System Updates 
+       
+     ## Internet Access to VM 
+
+       - Open Virtualbox Manager 
+       - Select the machine you cannot get internet on in the left pane.
+       - Click the Settings button in the top menu.
+       - Click Network in the left pane in the settings window.
+       - Switched to Bridged Adapter in the Attached to drop-down menu.
+       - Hit OK to save your changes.
+       - Start your VM  
+
+     ## Network Components 
+    
+       - ip address :a unique string of numbers separated by periods that identifies each computer
+         using the Internet Protocol to communicate over a network. 
+       - Subnet mask : It is a 32-bit number that masks an IP address and divides the IP address into network address and host address.
+       - Gateway - Tells which route to send the traffic out and in.
+
+     ## Network Files and Commands  
+
+       - Interface Detection 
+       - Assigning an IP address 
+       - Interface configuration files.
+          - /etc/nsswitch.conf 
+          - /etc/hosts 
+          - /etc/sysconfig/network 
+          - /etc/sysconfig/network-script/ifcg-nic 
+          - /etc/resolv.conf
+          - /etc/hostname = Hostname file 
+
+        - Network Commands 
+           - ping 
+           - ifconfig 
+           - ifup or ifdown 
+           - netstat 
+           - tcpdump 
+
+      
+      ## NIC Information (ethtool) 
+
+        * NIC = Network Interface Card  eg; ethtool enp0s3 
+        * Other NICs -> lo = The loopback device is a special interface that your computer uses to communicate with itself.
+                     -> virb0 = The virbr0 or "Virtual Bridge 0" interface is used for NAT (Network Address Translation). 
+                                Virtual environments sometimes use it to connect to the outside network 
+
+
+      ## NIC Bonding 
+
+         * NIC (Network Interface Card) bonding is also known as Network Bonding.
+           It can be defined as the aggregation or combination of multiple NIC into a single bond interface. 
+         * NIC Bonding Procedure :
+             - modprobe bonding 
+             - modinfo bonding 
+             - Create /etc/sysconfig/network-scripts/ifcfg-bond0 
+             - Edit /etc/sysconfig/network-scripts/ethernet1 
+             - Edit /etc/sysconfig/network-scripts/ethernet2 
+             - Restart network = systemctl restart network 
+
+          
+      ## Download Apps and Files  
+
+         * Linux = wget (W for worldwideweb) -> For downloading apps and files 
+            eg: wget http://website.com/filename  
+
+
+      ## curl and ping commands  
+
+         * Linux = curl -> it is a commandline tool to transfer data to or from a server, 
+                           using any of the supported protocols(HTTP, FTP, IMAP) 
+         * Linux = ping -> to check whether a site is open or not 
+         eg: curl http://website.com/filename 
+             curl -o http://website.com/filename  
+             ping www.google.com 
+         
+         
+      ## FTP - File Transfer Protocol  
+
+         - The File Transfer Protocol is a standard network protocol used for the transfer of computer
+           files between a client and server on a computer network. FTP is built on a client-server model 
+           architecture using separate control and data connections between client and server. 
+         - Protocol = Set of rules used by computers to communicate. 
+         - Default FTP Port = 21  
+         - Install and Configure FTP on the remote server 
+
+            * Become root 
+            * rpm -qa | grep ftp 
+            * ping www.google.com 
+            * yum install vsftpd 
+            * vi /etc/vsftpd/vsftpd.conf 
+            * Find the following lines and make the changes as shown below. 
+            * ## Disable anonymous login ## 
+                - anonymous_enable=NO 
+            * ## Uncomment ## 
+                - ascii_upload_enable=YES 
+                - ascii_download_enable=YES 
+            * ## Uncomment - Enter your Welcome message - This is optional ## 
+                - ftpd_banner=Welcome to UNIXMEN FTP service. 
+            * ## Add at the end of this file## 
+                 - use_localtime=YES 
+
+            * # systemctl start vsftpd 
+            * # systemctl enable vsftpd 
+            * # systemctl stop firewalld 
+            * # systemctl disable firewalld 
+            * # useradd username(if user does not exit)  
+            * Install FTP client on the client server 
+              - # Become root 
+              - # yum install ftp 
+              - # su - username 
+              - $ touch kruger  
+            * Commands to transfer file to the FTP server. 
+              - ftp 192.168.1.x 
+              - Enter username and password 
+              - bi - switiching to binary mode
+              - hash - To show hash tag
+              - put kruger  
+
+        ## SCP - Secure Copy Protocol 
+
+          * The Secure Copy Protocol or "SCP" helps to transfer computer 
+            files securely from a local to a remote host. It is somewhat 
+            similar to the File Transfer Protocol "FTP", But it adds security 
+            and authentication .
+          * Protocol - Set of rules used by computers to communicate.
+          * Default SCP Port = 22 (same as SSH) 
+          * SCP commands to transfer file to the remote server:
+             - Login as yourself 
+             - touch filename 
+             - scp jack username@ipaddress:/home/username 
+             - Enter username and password  
+
+        
+        ## rsync - Remote Synchronization 
+
+          * rsync is a utility for efficiently transferring and synchronizing 
+            files within the same computer or to a remote computer by comparing 
+            the modification times and sizes of file.
+
+          * rsync is a lot faster than ftp or scp.
+          * This utility is mostly used to backup the files and directories from one server to another.
+          * Default rsync Port = 22 (same as SSH) 
+          * Basic syntax of rsync command 
+             - # rsync options source destination 
+          * Install rsync in your Linux machine 
+             - # yum install rsync (on CentOS/RedHat based systems) 
+             - # apt-get install rsync (on Ubuntu Debian based systems)  
+          * rsync a file on a local machine  
+             - $ tar cvf backup.tar .
+             - $ mkdir /tmp/backups 
+             - $ rsync -zvh backup.tar /tmp/backups/ 
+          * rsync a directory on a local machine 
+             - $ rsync -azvh /home/username /tmp/backups/ 
+          * rsync a file to a remote machine 
+             - $ mkdir /tmp/backups (Create /tmp/backups dir on remote server) 
+             - $ rsync -avz backup.tar username@192.168.1.x:/tmp/backups 
+          * rsync a file from a remote machine 
+             - $ touch serverfile 
+             - $ rsync -avzh username@192.168.1.x:/home/username/serverfile /tmp/backups 
+
+        ## System Updates and Repos 
+
+             - yum (CentOS), apt-get (other Linux) 
+             - rpm (RedHat Package Manager)  
+
+        ## System Upgrade/Patch Management  
+
+           * Two Types of upgrades - Major version-> 5,6,7
+                                   - Minor Version-> 7.3 to 7.4 
+
+           * eg; yum update -y 
+
+        ## Create Local Repository From DVD 
+           * command - createrepo 
+
+        ##  Advance Package Management 
+
+           * Installing Packages 
+           * Upgrading 
+           * Deleting 
+           * View Package details Information 
+           * Identify source or location Information 
+           * Packages configuration files  
+
+        ## Rollback Updates and Patches  
+
+          * Rollback a package or patch 
+            - yum install <package-name>
+            - yum history undo <id> 
+          * Rollback an update 
+            - Downgrading a system to minor version(ex RHEL 7.1 to RHEL 7.0) is not 
+              recommended as this might leave the system in undesired or unstable state. 
+            - yum update - Update will preserve them.
+            - yum upgrade - Upgrade will delete obsolete packages.
+            - yum history undo <id> 
+        ## SSH and Telnet 
+           * Telnet = Un-secured connection between computers 
+           * SSH = Secured  
+           * Two types of packages for most of the services  
+             - Client package 
+             - Server package 
+
+        ## Domain Name System                     
+              
+          * Hostname To IP - A Record 
+          * IP to Hostname - PTR Record 
+          * Hostname to Hostname - CNAME Record
+          * Files 
+             - /etc/named.conf 
+             - /var/named 
+          * Service 
+             - systemctl restart named 
+
+          * Download, Install and Configure DNS 
+            - Create a snapshot of your virtual machine 
+            - Setup:
+                - Master DNS 
+                - Secondary or Slave DNS 
+                - Client 
+            - Domain Name = lab.local 
+            - IP address  = My local IP address on enp0s3
+            - Install DNS Package 
+               -yum install bind bind-utils -y 
+            - Configure DNS(summary) 
+               - Modify /etc/named.conf 
+               - Create two zone file (forward.lab and reverse.lab) 
+               - Modify DNS File permissions and start the service 
+
+            - Revert back to snapshot   
+
+          ## Hostname/IP Lookup 
+            
+            * Commands used for DNS lookup 
+              - nslookup
+              - dig 
+          
+          ## Network Time Protocol 
+             * Purpose - Time Synchronization 
+             * File - /etc/ntp.conf 
+             * Service - systemctl restart ntpd 
+             * Command - ntpq 
+
+          ## chronyd 
+            * Purpose = Time synchronization 
+            * Package name = chronyd 
+            * Configuration file = /etc/chronyd.conf 
+            * Log file = /var/log/chrony 
+            * Service = systemctl start/restart chronyd 
+            * Program command = chronyc  
+
+          ## Sendmail 
+             * Purpose - Send and receive emails 
+             * Files   - /etc/mail/sendmail.mc 
+                       - /etc/mail/sendmail.cf 
+                       - /etc/mail 
+             * Service 
+                systemctl restart sendmail 
+
+             * Command 
+                mail -s "subject line" email@mydomain.com 
+
+          ## Web Server (httpd) 
+             * Purpose = Serve Webpages
+             * Service or Package name = httpd 
+             * Files = /etc/httpd/conf/httpd.conf 
+                     = /var/www/html/index.html 
+             * Service 
+                 systemctl restart httpd 
+                 systemctl enable httpd 
+             * Log Files = /var/log/httpd/ 
+
+          ## Central Logger (RSYSLOG) 
+            
+            * Purpose = Generate logs or collect logs from other servers  
+            * Service or package name = rsyslog  
+            * Configuration file = /etc/rsyslog.conf 
+            * Service :
+                  - systemctl restart rsyslog 
+                  - systemctl enable rsyslog  
+
+          ## Securing Linux Machine (OS Hardening)
+             
+             * User Account 
+             * Remove un-wanted packages 
+             * Stop un-used Services 
+             * Check on Listening Ports 
+             * Secure SSH Configuration 
+             * Enable Firewall (iptables/firewalld) 
+             * Enable SELinux  (Securing Enhancing Linux)
+             * Change Listening Services Port Numbers  
+             * Keep your OS up to date (security patching)  
+
+          ## OpenLDAP Installation 
+
+             * It is a open -source implementation of Lightweight Directory Access Protocol developed by the OpenLDAP Project.
+             * OpenLDAP Service 
+                - slapd 
+             * Start or stop the service 
+                - systemctl start slapd 
+                - systemctl enable slapd 
+             * Configuration Files 
+                - /etc/openldap/slapd.d 
+
+          ## Trace Network Traffic (traceroute)  
+
+             * The traceroute command is used in Linux to map the journey that a packet of  
+               information undertakes from its source to its destination. One use of traceroute 
+               is to locate when data loss occurs throughout a network, which could signify a 
+               node that's down. 
+             * Example :
+                # traceroute www.google.com 
+
+
+          ## To Open an Image File  
+
+             * Image file formats are standardized means of organizing and storing digital images . Image files are composed of digital data 
+               in one of these formats that can be rasterized for use on a computer display or printer. 
+             * To open a image:
+                  - Become root 
+                  - yum install ImageMagick -y 
+                  - display image-file. 
+
+          ## Access Remote Server without Password (SSh -keys) 
+             * Two reasons to access a remote machine without password:
+                - Repetitive logins 
+                - Automation through scripts 
+             * Keys are generated at user level 
+             * In client machine:
+                 1. Generate the key : ssh-keygen 
+                 2. Copy the Key to the server : ssh-copy-id root@ipadressofserver
+                 3. Login from client to server : ssh root@ipaddressofserver 0r ssh -l root ipaddressofserver      
